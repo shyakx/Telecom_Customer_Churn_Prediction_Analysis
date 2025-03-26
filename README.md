@@ -1,2 +1,1 @@
-# image_classifier-ML-PIPELINE-SUMMATIVE
-This is an ML model that makes image classification.
+#Telecom_Customer_Churn_Prediction_Analysis
