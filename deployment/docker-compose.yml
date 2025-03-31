@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: ../app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../models:/app/models
+      - ../data:/app/data
+    environment:
+      - FLASK_ENV=production
+    restart: unless-stopped
+
+  # Uncomment to add a Redis service for caching
+  # redis:
+  #   image: redis:alpine
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   restart: unless-stopped
+
+# Uncomment if using Redis
+# volumes:
+#   redis_data:
