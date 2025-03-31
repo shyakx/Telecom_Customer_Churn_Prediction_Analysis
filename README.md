@@ -5,7 +5,7 @@ This project aims to predict customer churn using machine learning models. The g
 
 ## Project Structure
 ```
-Customer_Churn_ML/
+Telecom_Customer_Churn_Prediction_Analysis/
 │
 ├── README.md               # Project overview and instructions
 ├── notebook/
