@@ -5,7 +5,7 @@ This project aims to predict customer churn using machine learning models. The g
 
 ## Project Structure
 ```
-Customer_Churn_ML/
+Telecom_Customer_Churn_Prediction_Analysis/
 │
 ├── README.md               # Project overview and instructions
 ├── notebook/
@@ -78,7 +78,7 @@ Ensure you have Python 3.8+ installed along with pip and virtual environment too
 1. Clone the repository:
    ```sh
    git clone https://github.com/shyakx/Telecom_Customer_Churn_Prediction_Analysis.git
-   cd Customer_Churn_ML
+   cd Telecom_Customer_Churn_Prediction_Analysis
    ```
 2. Create a virtual environment and activate it:
    ```sh
@@ -134,3 +134,6 @@ Feel free to contribute by opening issues or submitting pull requests.
 
 ## License
 This project is open-source under the MIT License.
+
+## Author
+Steven SHYAKA
