@@ -1,15 +1,7 @@
 # Customer Churn Prediction
 
-## Project Overview
-This project aims to predict customer churn using machine learning models. It involves data preprocessing, model training (Logistic Regression and Random Forest), evaluation, and deployment. The pipeline is scalable and includes a web application for predictions, retraining, and monitoring.
-
-## Features
-- **Data Preprocessing**: Handles missing values, encodes categorical features, and scales numerical features.
-- **Model Training & Evaluation**: Compares Logistic Regression and Random Forest, selects the best model based on F1-score.
-- **Feature Importance Analysis**: Identifies key factors affecting churn.
-- **Web Application**: Allows users to upload data and make predictions.
-- **Retraining Mechanism**: Supports model retraining with new data.
-- **Cloud Deployment**: Containerized with Docker for scalability.
+## Overview
+This project aims to predict customer churn using machine learning models. The goal is to help businesses retain customers by identifying potential churners early. The project follows a structured pipeline, from data preprocessing to model training, evaluation, deployment, and retraining.
 
 ## Project Structure
 ```
@@ -44,42 +36,101 @@ Customer_Churn_ML/
 └── requirements.txt         # Dependencies list
 ```
 
-## Installation & Setup
+## Dataset
+The dataset consists of customer details, usage patterns, and churn status. Key features include:
+- **State:** The location of the customer.
+- **International Plan:** Whether the customer has an international calling plan.
+- **Voice Mail Plan:** Subscription to voicemail services.
+- **Total Day Minutes:** The total number of minutes spent on calls during the day.
+- **Customer Service Calls:** The number of calls made to customer service.
+- **Churn (Target):** Whether the customer has left the service (1) or not (0).
+
+## Model Training and Evaluation
+Two models were trained: **Logistic Regression** and **Random Forest**, with **Random Forest** being selected as the final model due to superior performance.
+
+### Logistic Regression
+- **Accuracy:** 85.6%
+- **Precision:** 58.6%
+- **Recall:** 16.8%
+- **F1 Score:** 26.2%
+- **ROC AUC:** 57.4%
+
+### Random Forest (Best Model)
+- **Accuracy:** 94.9%
+- **Precision:** 93.5%
+- **Recall:** 71.3%
+- **F1 Score:** 80.9%
+- **ROC AUC:** 85.2%
+
+The **Random Forest** model significantly outperforms Logistic Regression and has been selected as the final model for deployment.
+
+## Features
+- **Model Prediction:** Allows users to input data and get a churn prediction.
+- **Visualizations:** Provides insights into important features affecting churn.
+- **Data Upload:** Supports bulk data uploads for retraining.
+- **Retraining Trigger:** Users can trigger model retraining with new data.
+- **Performance Testing:** Simulates high-traffic scenarios using Locust.
+
+## Installation and Setup
+### Prerequisites
+Ensure you have Python 3.8+ installed along with pip and virtual environment tools.
+
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/Customer_Churn_ML.git
+   git clone https://github.com/shyakx/Telecom_Customer_Churn_Prediction_Analysis.git
    cd Customer_Churn_ML
    ```
-2. Install dependencies:
+2. Create a virtual environment and activate it:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
    ```sh
    pip install -r requirements.txt
    ```
-3. Run Jupyter Notebook for analysis:
+4. Run the model training pipeline:
    ```sh
-   jupyter notebook notebook/customer_churn_analysis.ipynb
+   python src/model.py
    ```
-4. Start the web application:
+5. Start the web app (Flask/FastAPI):
    ```sh
    python app/app.py
    ```
-5. To retrain the model, upload new data via the web app and trigger retraining.
 
 ## Deployment
-- Use Docker to containerize the application:
-  ```sh
-  docker build -t churn-prediction-app .
-  docker run -p 5000:5000 churn-prediction-app
-  ```
-- Deploy on a cloud platform (AWS/GCP/Azure) as described in `deployment/cloud_setup.md`.
+The model is containerized using Docker and deployed on a cloud platform. To deploy:
+```sh
+docker-compose up --build
+```
 
-## Usage
-- Upload customer data in CSV format.
-- Get churn predictions instantly.
-- View feature importance insights.
-- Retrain the model with new data.
+## Testing and Performance Evaluation
+To simulate multiple concurrent requests and measure response times:
+1. Install Locust:
+   ```sh
+   pip install locust
+   ```
+2. Run the Locust test:
+   ```sh
+   locust -f tests/load_test.py
+   ```
+3. Access the Locust web interface at `http://localhost:8089` to configure and start the test.
+
+## Retraining Process
+Users can upload new data to retrain the model automatically. The retraining process:
+1. Reads new data uploaded by users.
+2. Preprocesses and integrates the new data into the training set.
+3. Triggers the training script to update the model.
+4. Saves the new best-performing model and updates the deployment.
+
+## Next Steps
+- Fine-tune the Random Forest model further.
+- Implement real-time monitoring and logging.
+- Expand model explainability features.
+- Improve the web UI/UX for better usability.
 
 ## Contributing
-Pull requests are welcome. Ensure your code is well-documented and tested.
+Feel free to contribute by opening issues or submitting pull requests.
 
 ## License
-This project is licensed under the MIT License.
+This project is open-source under the MIT License.
