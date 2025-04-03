@@ -114,11 +114,11 @@ npm start
 
 | Metric    | Score |
 | --------- | ----- |
-| Accuracy  | 95%   |
-| Precision | 89%   |
-| Recall    | 85%   |
-| F1-Score  | 87%   |
-| ROC-AUC   | 91%   |
+| Accuracy  | 93%   |
+| Precision | 85%   |
+| Recall    | 63%   |
+| F1-Score  | 73%   |
+| ROC-AUC   | 80%   |
 
 ## 🤖 Future Improvements
 
