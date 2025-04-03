@@ -51,8 +51,11 @@ Users can upload new data to retrain the model automatically. The retraining pro
 🔗 Prediction Endpoint: [Prediction Endpoint](https://telecom-api.onrender.com/docs#/default/predict_churn_predict_churn__post)
 
 🔗 Retraining Endpoint: [Retraining Endpoint](https://telecom-api.onrender.com/docs#/default/retrain_model_retrain_model__post)
+
 🔗 Full API Repository: [GitHub - Backend](https://github.com/shyakx/Telecom_API.git)
+
 🔗 Full Frontend Repository: [GitHub - Frontend](https://github.com/shyakx/Predict-Prevent-Customer-Churn-with-AI-Frontend.git)
+
 🔗 Video Presentation: [YouTube Video](YOUR_YOUTUBE_URL_HERE)
 
 ## 🚀 How to Use
