@@ -58,7 +58,7 @@ Users can upload new data to retrain the model automatically. The retraining pro
 
 🔗 Full Website Link: [Website](https://predict-prevent-customer-churn-with-ai-steven-shyakas-projects.vercel.app/?#solution)
 
-🔗 Video Presentation: [YouTube Video]([YOUR_YOUTUBE_URL_HERE](https://youtu.be/MKbAXVvX37w))
+🔗 Video Presentation: [YouTube Video](https://youtu.be/MKbAXVvX37w)
 
 ## 🚀 How to Use
 
