@@ -12,60 +12,39 @@ This project aims to predict customer churn in the telecom industry using a deep
 ✅ Interactive Swagger UI for API testing 🔥\
 ✅ Frontend for visualization 🌐
 
-API Endpoints
+## API Endpoints
 
-Prediction Endpoint: [API_URL]/predict
+- Prediction Endpoint: [API_URL]/predict
 
-Retraining Endpoint: [API_URL]/retrain
+- Retraining Endpoint: [API_URL]/retrain
 
-Swagger Documentation: [SWAGGER_UI_URL]
+- Swagger Documentation: [SWAGGER_UI_URL]
 
-Prediction Process
+## Prediction Process
 
 The prediction process enables users to obtain churn predictions based on input data. The steps involved are:
 
-User Input: The user submits customer data via the API or frontend.
+- User Input: The user submits customer data via the API or frontend.
 
-Preprocessing: The input data is standardized using the saved scaler.pkl file to match the trained model’s format.
+- Preprocessing: The input data is standardized using the saved scaler.pkl file to match the trained model’s format.
 
-Model Inference: The request is passed to the deployed model, which makes a prediction.
+- Model Inference: The request is passed to the deployed model, which makes a prediction.
 
-Thresholding: The model outputs a probability score, which is converted into a binary classification (churn or not) using a threshold (e.g., 0.5).
+- Thresholding: The model outputs a probability score, which is converted into a binary classification (churn or not) using a threshold (e.g., 0.5).
 
-Response: The API returns the prediction result, indicating whether the customer is likely to churn, along with confidence scores.
+- Response: The API returns the prediction result, indicating whether the customer is likely to churn, along with confidence scores.
 
-Retraining Process
+## Retraining Process
 
 Users can upload new data to retrain the model automatically. The retraining process:
 
-Reads new data uploaded by users.
+- Reads new data uploaded by users.
 
-Preprocesses and integrates the new data into the training set.
+- Preprocesses and integrates the new data into the training set.
 
-Triggers the training script to update the model.
+- Triggers the training script to update the model.
 
-Saves the new best-performing model and updates the deployment.
-
-## 🏗️ Project Structure
-
-```
-├── backend  # API and Model Deployment
-│   ├── app.py  # Main FastAPI app
-│   ├── model  # Trained model & preprocessing files
-│   │   ├── best_model_keras.h5  # Saved deep learning model
-│   │   ├── scaler.pkl  # StandardScaler for preprocessing
-│   ├── requirements.txt  # Python dependencies
-│   ├── Dockerfile  # Deployment setup
-│   └── README.md  # API documentation
-│
-├── frontend  # UI for predictions
-│   ├── src  # Frontend source code
-│   ├── public  # Static assets
-│   ├── package.json  # Frontend dependencies
-│   ├── README.md  # Frontend documentation
-│
-└── README.md  # Main project documentation
-```
+- Saves the new best-performing model and updates the deployment.
 
 ## 🛠️ Technologies Used
 
