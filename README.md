@@ -12,14 +12,6 @@ This project aims to predict customer churn in the telecom industry using a deep
 ✅ Interactive Swagger UI for API testing 🔥\
 ✅ Frontend for visualization 🌐
 
-## API Endpoints
-
-- Prediction Endpoint: [API_URL]/predict
-
-- Retraining Endpoint: [API_URL]/retrain
-
-- Swagger Documentation: [SWAGGER_UI_URL]
-
 ## Prediction Process
 
 The prediction process enables users to obtain churn predictions based on input data. The steps involved are:
@@ -58,10 +50,11 @@ Users can upload new data to retrain the model automatically. The retraining pro
 
 ## 🌍 Live Links
 
-🔗 API Endpoint: [Deployed API](YOUR_API_URL_HERE)\
-🔗 Swagger UI: [API Documentation](YOUR_SWAGGER_URL_HERE)\
-🔗 Full API Repository: [GitHub - Backend](YOUR_BACKEND_GITHUB_URL_HERE)\
-🔗 Full Frontend Repository: [GitHub - Frontend](YOUR_FRONTEND_GITHUB_URL_HERE)\
+🔗 Prediction Endpoint: [Prediction Endpoint](https://telecom-api.onrender.com/docs#/default/predict_churn_predict_churn__post)
+
+🔗 Retraining Endpoint: [Retraining Endpoint](https://telecom-api.onrender.com/docs#/default/retrain_model_retrain_model__post)
+🔗 Full API Repository: [GitHub - Backend](https://github.com/shyakx/Telecom_API.git)
+🔗 Full Frontend Repository: [GitHub - Frontend](https://github.com/shyakx/Predict-Prevent-Customer-Churn-with-AI-Frontend.git)
 🔗 Video Presentation: [YouTube Video](YOUR_YOUTUBE_URL_HERE)
 
 ## 🚀 How to Use

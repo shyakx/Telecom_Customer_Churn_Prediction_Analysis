@@ -1,71 +1,33 @@
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import (accuracy_score, precision_score, 
-                            recall_score, f1_score, roc_auc_score)
-from .preprocessing import preprocess_data, load_data
-import joblib
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+import os
 
-def train_model(X_train, y_train, preprocessor, model_params=None):
-    """Train a Random Forest model with preprocessing"""
-    if model_params is None:
-        model_params = {
-            'n_estimators': 100,
-            'max_depth': 10,
-            'random_state': 42,
-            'class_weight': 'balanced'
-        }
-    
-    model = Pipeline([
-        ('preprocessor', preprocessor),
-        ('classifier', RandomForestClassifier(**model_params))
+def build_model(input_shape):
+    """Create and compile a neural network model."""
+    model = Sequential([
+        Dense(64, activation='relu', input_shape=(input_shape,)),
+        Dense(32, activation='relu'),
+        Dense(1, activation='sigmoid')
     ])
     
-    model.fit(X_train, y_train)
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     return model
 
-def evaluate_model(model, X_test, y_test):
-    """Evaluate model performance"""
-    y_pred = model.predict(X_test)
-    y_proba = model.predict_proba(X_test)[:, 1]
+def train_model(X_train, y_train):
+    """Train the model and save the best version."""
+    model = build_model(X_train.shape[1])
     
-    metrics = {
-        'accuracy': accuracy_score(y_test, y_pred),
-        'precision': precision_score(y_test, y_pred),
-        'recall': recall_score(y_test, y_pred),
-        'f1': f1_score(y_test, y_pred),
-        'roc_auc': roc_auc_score(y_test, y_proba)
-    }
+    history = model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.2, verbose=1)
     
-    return metrics
+    # Save the trained model
+    model.save("models/best_model.h5")
+    return model
 
-def save_model(model, filepath):
-    """Save the trained model"""
-    joblib.dump(model, filepath)
-
-def load_model(filepath):
-    """Load a saved model"""
-    return joblib.load(filepath)
-
-def run_training_pipeline(data_path='../data/telecom_churn.csv', 
-                         model_path='../models/best_model.pkl'):
-    """Run the complete training pipeline"""
-    # Load and preprocess data
-    df = load_data(data_path)
-    X_train, X_test, y_train, y_test, preprocessor = preprocess_data(df)
-    
-    # Train model
-    model = train_model(X_train, y_train, preprocessor)
-    
-    # Evaluate model
-    metrics = evaluate_model(model, X_test, y_test)
-    print("Model Evaluation Metrics:")
-    for name, value in metrics.items():
-        print(f"{name.capitalize()}: {value:.4f}")
-    
-    # Save model
-    save_model(model, model_path)
-    print(f"Model saved to {model_path}")
-    
-    return model, metrics
-
-if __name__ == "__main__":
-    run_training_pipeline()
+def load_model():
+    """Load the saved model or raise an error if missing."""
+    model_path = "models/best_model.h5"
+    if os.path.exists(model_path):
+        return tf.keras.models.load_model(model_path)
+    else:
+        raise FileNotFoundError("Model file not found. Train the model first.")
