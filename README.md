@@ -1,133 +1,152 @@
-# Customer Churn Prediction
+# 📡 Telecom Churn Prediction - AI Model & Deployment 🚀
 
-## Overview
-This project aims to predict customer churn using machine learning models. The goal is to help businesses retain customers by identifying potential churners early. The project follows a structured pipeline, from data preprocessing to model training, evaluation, deployment, and retraining.
+## 📌 Project Overview
 
-## Project Structure
-```
-Telecom_Customer_Churn_Prediction_Analysis/
-│
-├── README.md               # Project overview and instructions
-├── notebook/
-│   ├── customer_churn_analysis.ipynb  # Jupyter notebook with EDA & model training
-├── src/                     # Source code for the ML pipeline
-│   ├── preprocessing.py      # Data preprocessing functions
-│   ├── model.py              # Model training and evaluation functions
-│   ├── prediction.py         # Model inference functions
-│   ├── retraining.py         # Logic to trigger retraining
-├── data/                    # Dataset storage
-│   ├── train/               # Training data
-│   ├── test/                # Testing data
-│   ├── telecom_churn.csv    # Raw dataset
-├── models/                  # Saved models
-│   ├── best_model.pkl       # Serialized best model
-├── app/                     # Web application
-│   ├── Dockerfile           # Docker containerization setup
-│   ├── app.py               # Flask/FastAPI app for prediction
-│   ├── templates/           # HTML templates if needed
-│   ├── static/              # CSS, JS files
-├── tests/                   # Unit tests for ML pipeline
-│   ├── test_preprocessing.py
-│   ├── test_model.py
-│   ├── test_prediction.py
-├── deployment/              # Deployment scripts
-│   ├── docker-compose.yml   # Multi-container setup
-│   ├── cloud_setup.md       # Instructions for cloud deployment
-└── requirements.txt         # Dependencies list
-```
+This project aims to predict customer churn in the telecom industry using a deep learning model. The trained model is deployed as an API, allowing businesses to integrate it into their systems for real-time predictions.
 
-## Dataset
-The dataset consists of customer details, usage patterns, and churn status. Key features include:
-- **State:** The location of the customer.
-- **International Plan:** Whether the customer has an international calling plan.
-- **Voice Mail Plan:** Subscription to voicemail services.
-- **Total Day Minutes:** The total number of minutes spent on calls during the day.
-- **Customer Service Calls:** The number of calls made to customer service.
-- **Churn (Target):** Whether the customer has left the service (1) or not (0).
+## 🎯 Features
 
-## Model Training and Evaluation
-Two models were trained: **Logistic Regression** and **Random Forest**, with **Random Forest** being selected as the final model due to superior performance.
+✅ Machine learning-based churn prediction 📊\
+✅ REST API for easy integration 🛠️\
+✅ Scalable deployment using Docker & FastAPI ⚡\
+✅ Interactive Swagger UI for API testing 🔥\
+✅ Frontend for visualization 🌐
 
-### Logistic Regression
-- **Accuracy:** 85.6%
-- **Precision:** 58.6%
-- **Recall:** 16.8%
-- **F1 Score:** 26.2%
-- **ROC AUC:** 57.4%
+API Endpoints
 
-### Random Forest (Best Model)
-- **Accuracy:** 94.9%
-- **Precision:** 93.5%
-- **Recall:** 71.3%
-- **F1 Score:** 80.9%
-- **ROC AUC:** 85.2%
+Prediction Endpoint: [API_URL]/predict
 
-The **Random Forest** model significantly outperforms Logistic Regression and has been selected as the final model for deployment.
+Retraining Endpoint: [API_URL]/retrain
 
-## Features
-- **Model Prediction:** Allows users to input data and get a churn prediction.
-- **Visualizations:** Provides insights into important features affecting churn.
-- **Data Upload:** Supports bulk data uploads for retraining.
-- **Retraining Trigger:** Users can trigger model retraining with new data.
-- **Performance Testing:** Simulates high-traffic scenarios using Locust.
+Swagger Documentation: [SWAGGER_UI_URL]
 
-## Installation and Setup
-### Prerequisites
-Ensure you have Python 3.8+ installed along with pip and virtual environment tools.
+Prediction Process
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/shyakx/Telecom_Customer_Churn_Prediction_Analysis.git
-   cd Telecom_Customer_Churn_Prediction_Analysis
-   ```
-2. Create a virtual environment and activate it:
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
-4. Run the model training pipeline:
-   ```sh
-   python src/model.py
-   ```
-5. Start the web app (Flask/FastAPI):
-   ```sh
-   python app/app.py
-   ```
+The prediction process enables users to obtain churn predictions based on input data. The steps involved are:
 
-## Deployment
-The model is containerized using Docker and deployed on a cloud platform. To deploy:
-```sh
-docker-compose up --build
-```
+User Input: The user submits customer data via the API or frontend.
 
-## Testing and Performance Evaluation
-To simulate multiple concurrent requests and measure response times:
-1. Install Locust:
-   ```sh
-   pip install locust
-   ```
-2. Run the Locust test:
-   ```sh
-   locust -f tests/load_test.py
-   ```
-3. Access the Locust web interface at `http://localhost:8089` to configure and start the test.
+Preprocessing: The input data is standardized using the saved scaler.pkl file to match the trained model’s format.
 
-## Retraining Process
+Model Inference: The request is passed to the deployed model, which makes a prediction.
+
+Thresholding: The model outputs a probability score, which is converted into a binary classification (churn or not) using a threshold (e.g., 0.5).
+
+Response: The API returns the prediction result, indicating whether the customer is likely to churn, along with confidence scores.
+
+Retraining Process
+
 Users can upload new data to retrain the model automatically. The retraining process:
-1. Reads new data uploaded by users.
-2. Preprocesses and integrates the new data into the training set.
-3. Triggers the training script to update the model.
-4. Saves the new best-performing model and updates the deployment.
 
-## Next Steps
-- Fine-tune the Random Forest model further.
-- Implement real-time monitoring and logging.
-- Expand model explainability features.
-- Improve the web UI/UX for better usability.
+Reads new data uploaded by users.
+
+Preprocesses and integrates the new data into the training set.
+
+Triggers the training script to update the model.
+
+Saves the new best-performing model and updates the deployment.
+
+## 🏗️ Project Structure
+
+```
+├── backend  # API and Model Deployment
+│   ├── app.py  # Main FastAPI app
+│   ├── model  # Trained model & preprocessing files
+│   │   ├── best_model_keras.h5  # Saved deep learning model
+│   │   ├── scaler.pkl  # StandardScaler for preprocessing
+│   ├── requirements.txt  # Python dependencies
+│   ├── Dockerfile  # Deployment setup
+│   └── README.md  # API documentation
+│
+├── frontend  # UI for predictions
+│   ├── src  # Frontend source code
+│   ├── public  # Static assets
+│   ├── package.json  # Frontend dependencies
+│   ├── README.md  # Frontend documentation
+│
+└── README.md  # Main project documentation
+```
+
+## 🛠️ Technologies Used
+
+- **TensorFlow/Keras** - Model Training 🧠
+- **Scikit-Learn** - Data Preprocessing 📈
+- **FastAPI** - API Backend ⚡
+- **Swagger UI** - API Documentation 📝
+- **React.js** - Frontend 🌐
+- **Docker** - Deployment 🐳
+- **Locust** - Load Testing 📊
+
+## 🌍 Live Links
+
+🔗 API Endpoint: [Deployed API](YOUR_API_URL_HERE)\
+🔗 Swagger UI: [API Documentation](YOUR_SWAGGER_URL_HERE)\
+🔗 Full API Repository: [GitHub - Backend](YOUR_BACKEND_GITHUB_URL_HERE)\
+🔗 Full Frontend Repository: [GitHub - Frontend](YOUR_FRONTEND_GITHUB_URL_HERE)\
+🔗 Video Presentation: [YouTube Video](YOUR_YOUTUBE_URL_HERE)
+
+## 🚀 How to Use
+
+### 1️⃣ API Usage
+
+Send a POST request to the API with customer data:
+
+```bash
+curl -X POST "YOUR_API_URL/predict" -H "Content-Type: application/json" -d '{
+    "account_length": 120,
+    "international_plan": 1,
+    "voice_mail_plan": 0,
+    "total_day_minutes": 300,
+    "total_eve_minutes": 250,
+    "total_night_minutes": 200,
+    "total_intl_minutes": 15,
+    "customer_service_calls": 3
+}'
+```
+
+Response Example:
+
+```json
+{
+    "churn_probability": 0.85,
+    "prediction": "Churn Likely"
+}
+```
+
+### 2️⃣ Run Locally (Development Mode)
+
+#### Backend Setup:
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app:app --reload
+```
+
+#### Frontend Setup:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+## 📊 Model Performance
+
+| Metric    | Score |
+| --------- | ----- |
+| Accuracy  | 95%   |
+| Precision | 89%   |
+| Recall    | 85%   |
+| F1-Score  | 87%   |
+| ROC-AUC   | 91%   |
+
+## 🤖 Future Improvements
+
+- Improve model performance with hyperparameter tuning 🔧
+- Add real-time retraining with feedback loop 🔄
+- Enhance frontend UI with better UX 🎨
+- Deploy on a scalable cloud platform ☁️
 
 ## Contributing
 Feel free to contribute by opening issues or submitting pull requests.
