@@ -45,8 +45,6 @@ Users can upload new data to retrain the model automatically. The retraining pro
 - **FastAPI** - API Backend ⚡
 - **Swagger UI** - API Documentation 📝
 - **React.js** - Frontend 🌐
-- **Docker** - Deployment 🐳
-- **Locust** - Load Testing 📊
 
 ## 🌍 Live Links
 
@@ -64,7 +62,7 @@ Users can upload new data to retrain the model automatically. The retraining pro
 Send a POST request to the API with customer data:
 
 ```bash
-curl -X POST "YOUR_API_URL/predict" -H "Content-Type: application/json" -d '{
+'{
     "account_length": 120,
     "international_plan": 1,
     "voice_mail_plan": 0,
@@ -87,21 +85,7 @@ Response Example:
 
 ### 2️⃣ Run Locally (Development Mode)
 
-#### Backend Setup:
 
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app:app --reload
-```
-
-#### Frontend Setup:
-
-```bash
-cd frontend
-npm install
-npm start
-```
 
 ## 📊 Model Performance
 
